@@ -257,27 +257,27 @@ app.delete("/deleteHolding/:id", async(req, res) => {
     }
 });
 
-app.get("/user/profile", async (req, res) => {
-    try {
-        // 1. Check if the frontend actually sent an email
-        if (!req.query.email) {
-            return res.status(400).json({ message: "No email provided" });
-        }
+// app.get("/user/profile", async (req, res) => {
+//     try {
+//         // 1. Check if the frontend actually sent an email
+//         if (!req.query.email) {
+//             return res.status(400).json({ message: "No email provided" });
+//         }
 
-        // 2. Search the database safely
-        const user = await UserModel.findOne({email: req.query.email});
+//         // 2. Search the database safely
+//         const user = await UserModel.findOne({email: req.query.email});
         
-        if(user){
-            res.json({username: user.username, email: user.email});
-        } else {
-            res.status(404).json({message: "User not found"});
-        }
-    } catch (err) {
-        // 3. If MongoDB crashes, catch the error so the server doesn't break!
-        console.error("Profile Fetch Error:", err);
-        res.status(500).json({ message: "Internal Server Error" });
-    }
-});
+//         if(user){
+//             res.json({username: user.username, email: user.email});
+//         } else {
+//             res.status(404).json({message: "User not found"});
+//         }
+//     } catch (err) {
+//         // 3. If MongoDB crashes, catch the error so the server doesn't break!
+//         console.error("Profile Fetch Error:", err);
+//         res.status(500).json({ message: "Internal Server Error" });
+//     }
+// });
 
 app.use("/", authRoute);
 
