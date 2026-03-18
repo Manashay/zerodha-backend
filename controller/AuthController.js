@@ -15,8 +15,8 @@ module.exports.Signup = async (req, res, next) => {
             path: "/",
             httpOnly: true,    // More secure (prevents XSS)
             expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // 1 day
-            sameSite: "lax",   // Allows cookie to be sent across local ports
-            secure: false,     // Set to true only if using HTTPS
+            sameSite: "none",   // Allows cookie to be sent across local ports
+            secure: true,     // Set to true only if using HTTPS
         });
         res
          .status(201)
@@ -46,8 +46,8 @@ module.exports.Login = async (req, res, next) => {
             path: "/",
             httpOnly: true,    // More secure (prevents XSS)
             expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // 1 day
-            sameSite: "lax",   // Allows cookie to be sent across local ports
-            secure: false,     // Set to true only if using HTTPS
+            sameSite: "none",   // Allows cookie to be sent across local ports
+            secure: true,     // Set to true only if using HTTPS
         });
         res.status(201).json({message: "User logged in successfully", success: true});
         next();
